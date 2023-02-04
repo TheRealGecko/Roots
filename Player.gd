@@ -59,3 +59,8 @@ func _physics_process(delta):
 	if Input.is_action_just_released("down_arrow"):
 		isDown = false
 		player.get_node("Sprite").stop()
+		
+	if Input.is_action_pressed("shift"):
+		speed = 240
+	elif Input.is_action_just_released("shift"):
+		speed = 150

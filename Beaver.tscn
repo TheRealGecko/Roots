@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://res/beaver.png" type="Texture" id=1]
 [ext_resource path="res://Beaver.gd" type="Script" id=2]
@@ -54,16 +54,27 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 28.5, 17 )
 
-[node name="Beaver" type="Node2D"]
+[sub_resource type="CircleShape2D" id=9]
+radius = 336.001
+
+[node name="Beaver" type="KinematicBody2D" groups=["Beaver"]]
 script = ExtResource( 2 )
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
+[node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 1, 0 )
 frames = SubResource( 7 )
 animation = "side"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.5, 3 )
 shape = SubResource( 8 )
+
+[node name="Beaver" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 9 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

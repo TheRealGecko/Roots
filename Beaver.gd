@@ -6,34 +6,63 @@ var isUp
 var isDown
 
 var beaver
-var speed
+
+export var speed = 100
+var velocity = Vector2.ZERO
+var path = []
+var threshold = 16
+var nav = null
+
+
 
 var playerPos
 
 func _ready():
+	yield(owner, "ready")
+	nav = owner.nav
 	isLeft = false
 	isRight = false
 	isUp = false
 	isDown = false
 	
-	beaver = $KinematicBody2D
-	speed = 100
+	beaver = self
+
+var direction
 
 func _physics_process(delta):
-	playerPos = get_parent().get_node("Player").get_position()	
+	if path.size() > 0:
+		move_to_target()
 	
-	if isLeft:
-		beaver.move_and_slide(Vector2(-speed, 0))
+	if direction != null && direction.x < 0:
 		beaver.get_node("Sprite").flip_h = false
 		beaver.get_node("Sprite").play("side")
-	elif isRight:
-		beaver.move_and_slide(Vector2(speed, 0))
+	elif direction != null && direction.x > 0:
 		beaver.get_node("Sprite").flip_h = true
 		beaver.get_node("Sprite").play("side")
-	elif isUp:
-		beaver.move_and_slide(Vector2(0, -speed))
-		beaver.get_node("Sprite").play("up")
-	elif isDown:
-		beaver.move_and_slide(Vector2(0, speed))
-		beaver.get_node("Sprite").play("down")
+	#elif direction != null && direction.y < 0:
+	#	beaver.get_node("Sprite").play("up")
+	#elif isDown:
+	#	beaver.move_and_slide(Vector2(0, speed))
+	#	beaver.get_node("Sprite").play("down")
+		
+func move_to_target():
+	if global_position.distance_to(path[0]) < threshold:
+		path.remove(0)	
+	else:
+		direction = global_position.direction_to(path[0])
+		
+		velocity = beaver.move_and_slide(direction * speed)
 
+
+func get_target_path(target_pos):
+	path = nav.get_simple_path(global_position, target_pos, false)
+
+
+func _on_Area2D_body_entered(body):
+	if body.name == "Player":
+		speed = 180
+
+
+func _on_Area2D_body_exited(body):
+	if body.name == "Player":
+		speed = 100
