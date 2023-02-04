@@ -80,7 +80,6 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 
-[node name="Node2D" type="Node2D"]
 
 [sub_resource type="DynamicFont" id=6]
 size = 57

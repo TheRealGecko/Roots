@@ -7,16 +7,22 @@ var isDown
 var player
 var speed
 
+var playerPos
+
 func _ready():
 	isLeft = false
 	isRight = false
 	isUp = false
 	isDown = false
 	
-	player = $KinematicBody2D
 	speed = 150
+	
+	player = self
+	
 
-func _physics_process(delta):	
+func _physics_process(delta):
+	playerPos = get_position()	
+	
 	if isLeft:
 		player.move_and_slide(Vector2(-speed, 0))
 		player.get_node("Sprite").flip_h = false
