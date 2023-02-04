@@ -14,18 +14,9 @@ func _ready():
 	isDown = false
 	
 	player = $KinematicBody2D
-	speed = 1
+	speed = 150
 
 func _physics_process(delta):	
-	if Input.is_action_just_pressed("left_arrow") and !isRight and !isUp and !isDown:
-		isLeft = true
-	if Input.is_action_just_pressed("right_arrow") and !isLeft and !isUp and !isDown:
-		isRight = true	
-	if Input.is_action_just_pressed("up_arrow") and !isLeft and !isRight and !isDown: 
-		isUp = true
-	if Input.is_action_just_pressed("down_arrow") and !isLeft and !isRight and !isUp:
-		isDown = true
-		
 	if isLeft:
 		player.move_and_slide(Vector2(-speed, 0))
 		player.get_node("Sprite").flip_h = false
@@ -35,11 +26,20 @@ func _physics_process(delta):
 		player.get_node("Sprite").flip_h = true
 		player.get_node("Sprite").play("side")
 	elif isUp:
-		player.move_and_slide(Vector2(0, speed))
+		player.move_and_slide(Vector2(0, -speed))
 		player.get_node("Sprite").play("up")
 	elif isDown:
-		player.move_and_slide(Vector2(0, -speed))
+		player.move_and_slide(Vector2(0, speed))
 		player.get_node("Sprite").play("down")
+	
+	if Input.is_action_pressed("left_arrow") and !isRight and !isUp and !isDown:
+		isLeft = true
+	if Input.is_action_pressed("right_arrow") and !isLeft and !isUp and !isDown:
+		isRight = true	
+	if Input.is_action_pressed("up_arrow") and !isLeft and !isRight and !isDown: 
+		isUp = true
+	if Input.is_action_pressed("down_arrow") and !isLeft and !isRight and !isUp:
+		isDown = true
 
 	if Input.is_action_just_released("left_arrow"):
 		isLeft = false

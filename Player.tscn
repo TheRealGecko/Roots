@@ -69,5 +69,6 @@ frame = 1
 position = Vector2( 0, -1.5 )
 shape = SubResource( 8 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
+scale = Vector2( 0.5, 0.5 )
 current = true
