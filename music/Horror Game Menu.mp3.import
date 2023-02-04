@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Horror Game Menu.mp3-f7923d49c07a4dad6076386e0b1ababd.mp3str"
+
+[deps]
+
+source_file="res://music/Horror Game Menu.mp3"
+dest_files=[ "res://.import/Horror Game Menu.mp3-f7923d49c07a4dad6076386e0b1ababd.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
