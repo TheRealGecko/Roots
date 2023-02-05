@@ -9,6 +9,9 @@ var speed
 
 var playerPos
 
+
+var stamina = 100
+
 func _ready():
 	isLeft = false
 	isRight = false
@@ -18,6 +21,17 @@ func _ready():
 	speed = 150
 	
 	player = self
+	$Bar/Blue.modulate = Color(0.25, 0.2, 0.25)
+	$Bar/Green.modulate = Color(0.25, 0.2, 0.25)
+	$Bar/Red.modulate = Color(0.25, 0.2, 0.25)
+	
+	$Thing/Coming.color = Color(0.23, 0.06, 0.06, 0)
+	
+	$Heart.playing = false
+	
+	$Audio.playing = true
+	$Audio.pitch_scale = 0.83
+	$Audio.volume_db = -0.5
 	
 
 func _physics_process(delta):
@@ -59,3 +73,17 @@ func _physics_process(delta):
 	if Input.is_action_just_released("down_arrow"):
 		isDown = false
 		player.get_node("Sprite").stop()
+		
+	if Input.is_action_pressed("shift"):
+		if $Bar/ProgressBar.value > 0:
+			speed = 260
+			$Bar/ProgressBar.value -= 0.35
+		else:
+			speed = 150
+	elif $Bar/ProgressBar.value < 100:
+			$Bar/ProgressBar.value += 0.15
+	
+	if Input.is_action_just_released("shift"):
+		speed = 150
+		
+	
