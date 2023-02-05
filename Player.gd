@@ -73,7 +73,7 @@ func _physics_process(delta):
 		else:
 			speed = 150
 	elif $Bar/ProgressBar.value < 100:
-			$Bar/ProgressBar.value += 0.08
+			$Bar/ProgressBar.value += 0.15
 	
 	if Input.is_action_just_released("shift"):
 		speed = 150

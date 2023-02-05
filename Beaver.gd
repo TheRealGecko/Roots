@@ -44,7 +44,7 @@ func _physics_process(delta):
 	#elif isDown:
 	#	beaver.move_and_slide(Vector2(0, speed))
 	#	beaver.get_node("Sprite").play("down")
-		
+	
 func move_to_target():
 	if global_position.distance_to(path[0]) < threshold:
 		path.remove(0)	
@@ -52,6 +52,10 @@ func move_to_target():
 		direction = global_position.direction_to(path[0])
 		
 		velocity = beaver.move_and_slide(direction * speed)
+	
+	for i in beaver.get_slide_count():
+		if beaver.get_slide_collision(i).collider.name == "Player":
+			print("DEADD")
 
 
 func get_target_path(target_pos):
