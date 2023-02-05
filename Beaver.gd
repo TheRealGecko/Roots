@@ -60,7 +60,7 @@ func get_target_path(target_pos):
 
 func _on_Area2D_body_entered(body):
 	if body.name == "Player":
-		speed = 180
+		speed = 210
 
 
 func _on_Area2D_body_exited(body):

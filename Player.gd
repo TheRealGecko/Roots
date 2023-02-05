@@ -9,6 +9,9 @@ var speed
 
 var playerPos
 
+
+var stamina = 100
+
 func _ready():
 	isLeft = false
 	isRight = false
@@ -61,6 +64,15 @@ func _physics_process(delta):
 		player.get_node("Sprite").stop()
 		
 	if Input.is_action_pressed("shift"):
-		speed = 240
-	elif Input.is_action_just_released("shift"):
+		if $Bar/ProgressBar.value > 0:
+			speed = 260
+			$Bar/ProgressBar.value -= 0.35
+		else:
+			speed = 150
+	elif $Bar/ProgressBar.value < 100:
+			$Bar/ProgressBar.value += 0.08
+	
+	if Input.is_action_just_released("shift"):
 		speed = 150
+		
+	
