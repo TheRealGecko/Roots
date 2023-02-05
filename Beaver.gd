@@ -55,7 +55,7 @@ func move_to_target():
 	
 	for i in beaver.get_slide_count():
 		if beaver.get_slide_collision(i).collider.name == "Player":
-			print("DEADD")
+			get_tree().change_scene("res://GameOver.tscn")
 
 
 func get_target_path(target_pos):
