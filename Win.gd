@@ -6,6 +6,7 @@ onready var go = false
 
 func _ready():
 	$Sprite.modulate = Color(0,0,0)
+	$AudioStreamPlayer2D.play()
 	yield(get_tree().create_timer(0.5), "timeout")
 	go = true
 

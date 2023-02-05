@@ -33,7 +33,6 @@ func _ready():
 	
 	$Audio.playing = true
 	$Audio.pitch_scale = 0.83
-	$Audio.volume_db = -0.5
 	
 	$Thing.visible = true
 	$fog.visible = true
@@ -96,19 +95,20 @@ func _on_Blue2D_body_entered(body):
 	get_parent().get_node("Blue").queue_free()
 	$Bar/Blue.modulate = Color(1, 1, 1)
 	gemAmt += 1
+	$AudioStreamPlayer2D.play()
 
 
 func _on_Green2D_body_entered(body):
 	get_parent().get_node("Green").queue_free()
 	$Bar/Green.modulate = Color(1, 1, 1)
 	gemAmt += 1
-
+	$AudioStreamPlayer2D.play()
 
 func _on_Red2D_body_entered(body):
 	get_parent().get_node("Red").queue_free()
 	$Bar/Red.modulate = Color(1, 1, 1)
 	gemAmt += 1
-
+	$AudioStreamPlayer2D.play()
 
 func _on_Door2D_body_entered(body):
 	if gemAmt == 3:
