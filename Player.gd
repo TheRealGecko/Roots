@@ -35,25 +35,37 @@ func _ready():
 	$Audio.pitch_scale = 0.83
 	$Audio.volume_db = -0.5
 	
+	$Thing.visible = true
+	$fog.visible = true
+	
 
 func _physics_process(delta):
 	playerPos = get_position()	
-	
-	if isLeft:
-		player.move_and_slide(Vector2(-speed, 0))
-		player.get_node("Sprite").flip_h = false
-		player.get_node("Sprite").play("side")
-	elif isRight:
-		player.move_and_slide(Vector2(speed, 0))
-		player.get_node("Sprite").flip_h = true
-		player.get_node("Sprite").play("side")
-	elif isUp:
-		player.move_and_slide(Vector2(0, -speed))
-		player.get_node("Sprite").play("up")
-	elif isDown:
-		player.move_and_slide(Vector2(0, speed))
-		player.get_node("Sprite").play("down")
-	
+	if $Dialogue.start == true:
+		if isLeft:
+			player.move_and_slide(Vector2(-speed, 0))
+			player.get_node("Sprite").flip_h = false
+			player.get_node("Sprite").play("side")
+		elif isRight:
+			player.move_and_slide(Vector2(speed, 0))
+			player.get_node("Sprite").flip_h = true
+			player.get_node("Sprite").play("side")
+		elif isUp:
+			player.move_and_slide(Vector2(0, -speed))
+			player.get_node("Sprite").play("up")
+		elif isDown:
+			player.move_and_slide(Vector2(0, speed))
+			player.get_node("Sprite").play("down")
+			
+		if Input.is_action_pressed("shift"):
+			if $Bar/ProgressBar.value > 0:
+				speed = 260
+				$Bar/ProgressBar.value -= 0.35
+			else:
+				speed = 150
+		elif $Bar/ProgressBar.value < 100:
+			$Bar/ProgressBar.value += 0.15
+		
 	if Input.is_action_pressed("left_arrow") and !isRight and !isUp and !isDown:
 		isLeft = true
 	if Input.is_action_pressed("right_arrow") and !isLeft and !isUp and !isDown:
@@ -75,15 +87,6 @@ func _physics_process(delta):
 	if Input.is_action_just_released("down_arrow"):
 		isDown = false
 		player.get_node("Sprite").stop()
-		
-	if Input.is_action_pressed("shift"):
-		if $Bar/ProgressBar.value > 0:
-			speed = 260
-			$Bar/ProgressBar.value -= 0.35
-		else:
-			speed = 150
-	elif $Bar/ProgressBar.value < 100:
-			$Bar/ProgressBar.value += 0.15
 	
 	if Input.is_action_just_released("shift"):
 		speed = 150
