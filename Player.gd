@@ -25,6 +25,14 @@ func _ready():
 	$Bar/Green.modulate = Color(0.25, 0.2, 0.25)
 	$Bar/Red.modulate = Color(0.25, 0.2, 0.25)
 	
+	$Thing/Coming.color = Color(0.23, 0.06, 0.06, 0)
+	
+	$Heart.playing = false
+	
+	$Audio.playing = true
+	$Audio.pitch_scale = 0.83
+	$Audio.volume_db = -0.5
+	
 
 func _physics_process(delta):
 	playerPos = get_position()	

@@ -65,8 +65,17 @@ func get_target_path(target_pos):
 func _on_Area2D_body_entered(body):
 	if body.name == "Player":
 		speed = 210
+		body.get_node("Thing/Coming").color = Color(0.23, 0.06, 0.06, 0.4)
+		body.get_node("Audio").pitch_scale = 0.7
+		body.get_node("Audio").volume_db = -6.5
+		body.get_node("Heart").playing = true
+		
 
 
 func _on_Area2D_body_exited(body):
 	if body.name == "Player":
 		speed = 100
+		body.get_node("Thing/Coming").color = Color(0.23, 0.06, 0.06, 0)
+		body.get_node("Audio").pitch_scale = 0.83
+		body.get_node("Audio").volume_db = -1.5
+		body.get_node("Heart").playing = false

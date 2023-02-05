@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://res/Player.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://res/green.png" type="Texture" id=4]
 [ext_resource path="res://res/blue.png" type="Texture" id=5]
 [ext_resource path="res://res/red.png" type="Texture" id=6]
+[ext_resource path="res://music/heartbeat.wav" type="AudioStream" id=7]
+[ext_resource path="res://music/mall.mp3" type="AudioStream" id=8]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -142,7 +144,7 @@ texture = ExtResource( 3 )
 [node name="Bar" type="Sprite" parent="."]
 position = Vector2( -94.5, 123 )
 scale = Vector2( 0.820671, 0.979871 )
-z_index = 6
+z_index = 10
 
 [node name="ProgressBar" type="ProgressBar" parent="Bar"]
 anchor_left = -95.109
@@ -169,3 +171,20 @@ frames = SubResource( 14 )
 [node name="Red" type="AnimatedSprite" parent="Bar"]
 position = Vector2( 76.1572, 3.5719 )
 frames = SubResource( 16 )
+
+[node name="Thing" type="Sprite" parent="."]
+z_index = 8
+
+[node name="Coming" type="ColorRect" parent="Thing"]
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+color = Color( 0.227451, 0.0627451, 0.0627451, 1 )
+
+[node name="Heart" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+volume_db = 24.0
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
