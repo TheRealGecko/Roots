@@ -51,14 +51,18 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 28.5, 17 )
+[sub_resource type="CapsuleShape2D" id=10]
+radius = 20.0
+height = 23.0
 
 [sub_resource type="CircleShape2D" id=9]
 radius = 336.001
 
 [node name="Beaver" type="KinematicBody2D" groups=["Beaver"]]
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 1, 0 )
@@ -67,7 +71,8 @@ animation = "side"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.5, 3 )
-shape = SubResource( 8 )
+rotation = 1.5708
+shape = SubResource( 10 )
 
 [node name="Beaver" type="Node2D" parent="."]
 
