@@ -12,6 +12,8 @@ var playerPos
 
 var stamina = 100
 
+var gemAmt = 0
+
 func _ready():
 	isLeft = false
 	isRight = false
@@ -85,5 +87,26 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_released("shift"):
 		speed = 150
-		
-	
+
+
+func _on_Blue2D_body_entered(body):
+	get_parent().get_node("Blue").queue_free()
+	$Bar/Blue.modulate = Color(1, 1, 1)
+	gemAmt += 1
+
+
+func _on_Green2D_body_entered(body):
+	get_parent().get_node("Green").queue_free()
+	$Bar/Green.modulate = Color(1, 1, 1)
+	gemAmt += 1
+
+
+func _on_Red2D_body_entered(body):
+	get_parent().get_node("Red").queue_free()
+	$Bar/Red.modulate = Color(1, 1, 1)
+	gemAmt += 1
+
+
+func _on_Door2D_body_entered(body):
+	if gemAmt == 3:
+		get_tree().change_scene("res://Win.tscn")
