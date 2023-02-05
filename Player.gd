@@ -21,6 +21,9 @@ func _ready():
 	speed = 150
 	
 	player = self
+	$Bar/Blue.modulate = Color(0.25, 0.2, 0.25)
+	$Bar/Green.modulate = Color(0.25, 0.2, 0.25)
+	$Bar/Red.modulate = Color(0.25, 0.2, 0.25)
 	
 
 func _physics_process(delta):
